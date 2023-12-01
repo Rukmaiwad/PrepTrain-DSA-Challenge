@@ -1,0 +1,13 @@
+def findMajorityElement(arr, n):
+	dic={}
+	for i in range(n):
+		if arr[i] not in dic:
+			dic[arr[i]]=1
+		else:
+			dic[arr[i]]+=1
+	for val in dic:
+		if dic[val]>n//2:
+			return val
+	return -1
+	
+	pass
