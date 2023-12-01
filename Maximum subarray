@@ -1,0 +1,21 @@
+def maximumSumSubarray(n, arr):
+	
+	maxi=-sys.maxsize-1
+	s=0
+	e=0
+	start=0
+	max_end=0
+	for i in range(n):
+		max_end+=arr[i]
+		if maxi<max_end:
+			maxi=max_end
+			e=i
+			start=s
+		if max_end<0:
+			max_end=0
+			s=i+1
+	return arr[start:e+1]
+		
+
+
+	pass
