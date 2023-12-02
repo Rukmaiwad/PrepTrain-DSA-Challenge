@@ -1,0 +1,100 @@
+from math import *
+from collections import *
+from sys import *
+from os import *
+
+import sys
+from sys import stdin
+
+# Following is the linked list node structure:
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+      
+def sortTwoLists(first, second):
+    if first==None:
+        return second
+    if second is None:
+        return first
+    cur1=first
+    cur2=second
+    new=Node(0)
+    node=new
+    while cur1 and cur2:
+        if cur1.data<=cur2.data:
+            temp=cur1.next
+            node.next=cur1
+            node=cur1
+            cur1=temp
+        else:
+            temp=cur2.next
+            node.next=cur2
+            node=cur2
+            cur2=temp
+    while cur1:
+        temp=cur1.next
+        node.next=cur1
+        node=cur1
+        cur1=temp
+    while cur2:
+        temp=cur2.next
+        node.next=cur2
+        node=cur2
+        cur2=temp
+    return new.next
+
+
+
+   
+    pass
+
+
+
+
+
+
+
+
+
+
+def ll(arr):
+    
+    if len(arr)==0:
+        return None
+    
+    head = Node(arr[0])
+    last = head
+    
+    for data in arr[1:]:
+        
+        last.next = Node(data)
+        last = last.next
+        
+    return head
+
+def printll(head):
+    
+    while head:
+        
+        print(head.data, end=' ')
+        
+        head = head.next
+        
+    print(-1)
+
+    
+
+t = int(sys.stdin.readline().strip())
+
+for i in range(t):
+    
+    arr1=list(map(int, sys.stdin.readline().strip().split(" ")))
+    arr2=list(map(int, sys.stdin.readline().strip().split(" ")))
+    
+    l1 = ll(arr1[:-1])
+    l2 = ll(arr2[:-1])
+    
+    l = sortTwoLists(l1, l2)
+    
+    printll(l)
