@@ -1,0 +1,32 @@
+def longestPalinSubstring(str: str) -> str:
+    dp=[[False for i in range(len(str))] for j in range(len(str))]
+    n=len(str)
+    for i in range(len(str)):
+        dp[i][i]=True
+        if i+1!=n:
+            if str[i]==str[i+1]:
+                dp[i][i+1]=True
+    for c in range(2,n):
+        i=0
+        j=c
+        while i<n and j<n:
+            if str[i]!=str[j]:
+                dp[i][j]=False
+            else:
+                dp[i][j]=dp[i+1][j-1]
+            i+=1
+            j+=1
+
+    maxi=0
+    cur=0
+    s=""
+    for i in range(n):
+        for j in range(i,n):
+            if dp[i][j]==True:
+                cur=j-i+1
+                if cur>maxi:
+                    maxi=cur
+                    s=str[i:j+1]
+    return s
+    
+    pass
