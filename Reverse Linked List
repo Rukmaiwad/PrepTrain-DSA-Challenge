@@ -1,0 +1,36 @@
+from math import *
+from collections import *
+from sys import *
+from os import *
+
+"""***************************************************************
+
+    Following is the class structure of the LinkedListNode class:
+
+    class Node:
+        def __init__(self, data):
+            self.data = data
+            self.next = None
+
+
+*****************************************************************"""
+
+
+def reverseLinkedList(head):
+    # new=Node(None)
+    if head is None:
+        return None
+    node=None
+    cur=head
+    while cur.next:
+        temp=cur.next
+        cur.next=node
+        node=cur
+        cur=temp
+    cur.next=node
+    node=cur
+
+    return node
+    
+
+    pass
