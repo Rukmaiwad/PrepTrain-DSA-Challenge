@@ -1,0 +1,5 @@
+def reverseString(st: str) -> str:
+    word=st.split()
+    rev=word[::-1]
+    rev_st=" ".join(rev)
+    return rev_st
