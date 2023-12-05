@@ -1,0 +1,33 @@
+def bfs(queue,adj,visited,t):
+    parent_dict={}
+    while queue:
+        temp=queue.pop(0)
+        for i in adj[temp]:
+            if visited[i]==0:
+                visited[i]=1
+                parent_dict[i]=temp
+                if i==t:
+                    return parent_dict
+                queue.append(i)
+    return -1
+
+def shortestPath(edges, n, m, s, t):
+    adj={}
+    for i in range(1,n+1):
+        adj[i]=[]
+    for start,end in edges:
+        adj[start].append(end)
+        adj[end].append(start)
+    visited=[0 for i in range(n+1)]
+    visited[s]=1
+    queue=[s]
+    parent_dict=bfs(queue,adj,visited,t)
+    if parent_dict==-1:
+        return [-1]
+    shortest=[t]
+    parent=parent_dict[t]
+    while parent!=s:
+        shortest.append(parent)
+        parent=parent_dict[parent]
+    shortest.append(s)
+    return shortest[::-1]
