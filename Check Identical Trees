@@ -1,0 +1,16 @@
+# Following is the structure of BinaryTree Node
+class BinaryTreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+        
+def identicalTrees(root1: BinaryTreeNode, root2:BinaryTreeNode ) -> bool:
+    if root1 is None and root2 is None:
+        return True
+    if root1 is None or root2 is None:
+        return False
+    if root1.data!=root2.data:
+        return False
+    return (root1.data==root2.data ) and identicalTrees(root1.left,root2.left) and identicalTrees(root1.right,root2.right)
+    pass
