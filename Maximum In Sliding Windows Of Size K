@@ -1,0 +1,27 @@
+
+from collections import deque
+
+def slidingWindowMaximum(nums:list, k:int):
+	d=deque()
+	heap=[]
+	ans=[]
+	if k==1:
+		return nums
+	for i in range(k):
+		while d and nums[i]>=nums[d[-1]]:
+			d.pop()
+		d.append(i)
+		# print("#",nums[i])
+	ans.append(nums[d[0]])
+	for i in range(k,len(nums)):
+		while d and d[0]<=i-k:
+			d.popleft()
+		while d and nums[i]>=nums[d[-1]]:
+			d.pop()
+		d.append(i)
+		ans.append(nums[d[0]])
+	return ans
+	
+
+	
+	
