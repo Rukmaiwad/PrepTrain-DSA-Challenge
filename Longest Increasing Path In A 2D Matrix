@@ -1,0 +1,29 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def longestIncreasingPath(mat, n, m):
+
+	dp={}
+
+	def dfs(r,c,pv):
+		if r<0 or c<0 or r>=n or c>=m or mat[r][c]<=pv:
+			return 0
+		if (r,c) in dp:
+			return dp[(r,c)]
+		res=1
+		res=max(res,1+dfs(r+1,c,mat[r][c]))
+		res=max(res,1+dfs(r-1,c,mat[r][c]))
+		res=max(res,1+dfs(r,c+1,mat[r][c]))
+		res=max(res,1+dfs(r,c-1,mat[r][c]))
+		dp[(r,c)]=res
+		return res
+	
+	for i in range(n):
+		for j in range(m):
+			dfs(i,j,-1)
+	ans=max(dp.values())
+	return ans
+	
+	pass
