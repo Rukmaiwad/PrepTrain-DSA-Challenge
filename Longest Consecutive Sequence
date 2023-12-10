@@ -1,0 +1,30 @@
+from math import *
+from collections import *
+from sys import *
+from os import *
+
+def lengthOfLongestConsecutiveSequence(arr, n):
+    d={}
+    for i in range(n):
+        d[arr[i]]=i
+    a=[]
+    for i in range(n):
+        a.append(arr[i])
+    a.sort()
+    maxl=1
+    ans=1
+    arr.sort()
+    for i in range(1,n):
+        if arr[i-1]==arr[i]:
+            ans=max(ans,maxl)
+        elif arr[i-1]+1==arr[i]:
+            maxl+=1
+            ans=max(ans,maxl)
+        else:
+            maxl=1
+            ans=max(ans,maxl)
+    return ans
+
+
+    
+    pass
