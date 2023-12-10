@@ -1,0 +1,54 @@
+'''
+Following is the structure of the Node class already defined.
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        
+'''
+
+def findIntersection(firstHead, secondHead):
+    cur1=firstHead
+    c1=0
+    while cur1:
+        cur1=cur1.next
+        c1+=1
+    cur2=secondHead
+    c2=0
+    while cur2:
+        cur2=cur2.next
+        c2+=1
+    if c1>=c2:
+        diff=c1-c2
+        h1=firstHead
+        h2=secondHead
+        for i in range(diff):
+            h1=h1.next
+        if h1==h2:
+            return h1
+        while h2:
+            h1=h1.next
+            h2=h2.next
+            if h1==h2:
+                return h1
+        return None
+    else:
+        diff=c2-c1
+        h1=firstHead
+        h2=secondHead
+        for i in range(diff):
+            h2=h2.next
+        if h1==h2:
+            return h1
+        while h1:
+            h1=h1.next
+            h2=h2.next
+            if h1==h2:
+                return h1
+        return None
+        
+
+
+	
+    pass
