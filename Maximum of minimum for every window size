@@ -1,0 +1,42 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def maxMinWindow(arr,n):
+    # Write your code here
+    # Return a list of integers
+    left=[-1]*(n+1)
+    right=[n]*(n+1)
+    s=[]
+    for i in range(n):
+        while len(s) and arr[s[-1]]>=arr[i]:
+            s.pop()
+        if len(s):
+            left[i]=s[-1]
+        s.append(i)
+    while len(s):
+        s.pop()
+    
+    for i in range(n-1,-1,-1):
+        while len(s) and arr[s[-1]]>=arr[i]:
+            s.pop()
+        if len(s):
+            right[i]=s[-1]
+        s.append(i)
+    while len(s):
+        s.pop()
+    
+    ans=[-1000000000]*(n+1)
+
+    for i in range(n):
+        l=right[i]-left[i]-1
+        ans[l]=max(ans[l],arr[i])
+    for i in range(n-1,0,-1):
+        ans[i]=max(ans[i],ans[i+1])
+    return ans[1:]
+        
+
+    
+    
+    pass
