@@ -1,0 +1,38 @@
+# Following is the TreeNode class structure.
+class BinaryTreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def maxPathSum(root: BinaryTreeNode) -> int:
+    if root is None:
+        return 0
+    maxi=-10000000000000
+    def maxpath(node):
+        nonlocal maxi
+        if node is None:
+            return 0
+        lefts=max(0,maxpath(node.left))
+        rights=max(0,maxpath(node.right))
+        maxi=max(maxi,lefts+rights+node.data)
+        return node.data+max(lefts,rights)
+    
+    ans=maxpath(root)
+    return maxi
+    # def path(node,maxi):
+    #     # global maxi
+    #     if node is None:
+    #         return 0
+    #     ans = maxpath(node)
+    #     if ans>maxi:
+    #         maxi=ans
+    #     path(root.left,maxi)
+    #     path(root.right,maxi)
+    #     return maxi
+    # ans=path(root,0)
+    # return ans
+
+
+    
+    pass
