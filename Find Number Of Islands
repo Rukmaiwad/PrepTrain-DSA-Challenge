@@ -1,0 +1,25 @@
+def findIslands(mat, n, m):
+
+	def dfs(i,j,vis,mat):
+		if i<0 or j<0 or i>=n or j>=m or vis[i][j]==True or mat[i][j]==0:
+			return 
+		vis[i][j]=True
+		dfs(i-1,j-1,vis,mat)
+		dfs(i-1,j,vis,mat)
+		dfs(i-1,j+1,vis,mat)
+		dfs(i,j-1,vis,mat)
+		dfs(i,j+1,vis,mat)
+		dfs(i+1,j-1,vis,mat)
+		dfs(i+1,j,vis,mat)
+		dfs(i+1,j+1,vis,mat)
+	c=0
+	vis=[[False for j in range(m)] for i in range(n)]
+	for i in range(n):
+		for j in range(m):
+			if vis[i][j]==False and mat[i][j]==1:
+
+
+				c+=1
+				dfs(i,j,vis,mat)
+	return c
+	
